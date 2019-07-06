@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { addArticle } from "../store/actions";
+import { addArticle,getData,getThunkData } from "../store/actions";
 import { connect } from 'react-redux';
 class Form extends Component {
     constructor(props) {
@@ -31,6 +31,10 @@ class Form extends Component {
                     onChange={this.onChangeHandle}
                 />
                 <button type="submit">Add</button>
+
+                <button type="button" onClick={this.props.getData}>Get Data</button>
+                <button type="button" onClick={this.props.getThunkData}>Get TH Data</button>
+
             </form>
         </div> );
     }
@@ -38,7 +42,9 @@ class Form extends Component {
 
 const mapDispatchToProps = (dispatch) => { 
         return {
-            addArticle : item => dispatch(addArticle(item))    
+            addArticle : item => dispatch(addArticle(item)),
+            getData: ()=>dispatch(getData()),
+            getThunkData: ()=> dispatch(getThunkData())
         }
 }
 export default connect(null,mapDispatchToProps)(Form);

@@ -1,4 +1,4 @@
-import { ADD_ARTICLE } from "../../constants/action-types";
+import { ADD_ARTICLE,DATA_RECEIVED } from "../../constants/action-types";
 
 const initialState = {
     items: [
@@ -18,7 +18,12 @@ function rootReducer (state = initialState, action){
             items: state.items.concat(action.payload)
         });
         
-            break;    
+        break;    
+        case DATA_RECEIVED:
+        console.log(action);
+        return {...state,items: [...state.items, ...action.payload.items]}
+        break;
+        
         default:
             return state;
             break;
